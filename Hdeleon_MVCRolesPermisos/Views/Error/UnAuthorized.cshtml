@@ -1,0 +1,39 @@
+﻿
+
+@{
+    ViewBag.Title = "UnAuthorized";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+    <section class="content-header">
+        <h2>UnAuthorized</h2>
+    </section>
+
+    <section class="content">
+        <div class="error-page">
+            <h2 class="headline text-danger">
+                Error
+            </h2>
+
+            <div class="has-error">
+                <h3><i class="fade warning text-danger">Acceso Denegado</i></h3>
+
+                @if (ViewBag.operacion != "")
+                {
+                    <p>Operacion @ViewBag.operacion</p>
+                }
+
+                @if (ViewBag.modulo != "")
+                {
+                    <p>Operacion @ViewBag.modulo</p>
+                }
+
+                @if (ViewBag.msgError != "")
+                {
+                    <p>Operacion @ViewBag.msgError</p>
+                }
+            </div>
+        </div>
+    </section>
+
+

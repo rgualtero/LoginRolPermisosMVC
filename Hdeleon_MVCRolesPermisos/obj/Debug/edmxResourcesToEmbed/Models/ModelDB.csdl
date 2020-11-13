@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AplicacionMVCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Modulo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Operacion" Relationship="Self.FK__Operacion__IdMod__2A4B4B5E" FromRole="Modulo" ToRole="Operacion" />
+  </EntityType>
+  <EntityType Name="Operacion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdModulo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Modulo" Relationship="Self.FK__Operacion__IdMod__2A4B4B5E" FromRole="Operacion" ToRole="Modulo" />
+    <NavigationProperty Name="RolOperacion" Relationship="Self.FK__RolOperac__IdOpe__2E1BDC42" FromRole="Operacion" ToRole="RolOperacion" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="RolOperacion" Relationship="Self.FK__RolOperac__IdRol__2D27B809" FromRole="Rol" ToRole="RolOperacion" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__IdRol__276EDEB3" FromRole="Rol" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="RolOperacion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdRol" Type="Int32" Nullable="false" />
+    <Property Name="IdOperacion" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Operacion" Relationship="Self.FK__RolOperac__IdOpe__2E1BDC42" FromRole="RolOperacion" ToRole="Operacion" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK__RolOperac__IdRol__2D27B809" FromRole="RolOperacion" ToRole="Rol" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IdRol" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK__Usuario__IdRol__276EDEB3" FromRole="Usuario" ToRole="Rol" />
+  </EntityType>
+  <Association Name="FK__Operacion__IdMod__2A4B4B5E">
+    <End Role="Modulo" Type="Self.Modulo" Multiplicity="1" />
+    <End Role="Operacion" Type="Self.Operacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modulo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Operacion">
+        <PropertyRef Name="IdModulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RolOperac__IdOpe__2E1BDC42">
+    <End Role="Operacion" Type="Self.Operacion" Multiplicity="1" />
+    <End Role="RolOperacion" Type="Self.RolOperacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Operacion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolOperacion">
+        <PropertyRef Name="IdOperacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RolOperac__IdRol__2D27B809">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="RolOperacion" Type="Self.RolOperacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolOperacion">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Usuario__IdRol__276EDEB3">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AplicacionMVCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Modulo" EntityType="Self.Modulo" />
+    <EntitySet Name="Operacion" EntityType="Self.Operacion" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" />
+    <EntitySet Name="RolOperacion" EntityType="Self.RolOperacion" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK__Operacion__IdMod__2A4B4B5E" Association="Self.FK__Operacion__IdMod__2A4B4B5E">
+      <End Role="Modulo" EntitySet="Modulo" />
+      <End Role="Operacion" EntitySet="Operacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RolOperac__IdOpe__2E1BDC42" Association="Self.FK__RolOperac__IdOpe__2E1BDC42">
+      <End Role="Operacion" EntitySet="Operacion" />
+      <End Role="RolOperacion" EntitySet="RolOperacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RolOperac__IdRol__2D27B809" Association="Self.FK__RolOperac__IdRol__2D27B809">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="RolOperacion" EntitySet="RolOperacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Usuario__IdRol__276EDEB3" Association="Self.FK__Usuario__IdRol__276EDEB3">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

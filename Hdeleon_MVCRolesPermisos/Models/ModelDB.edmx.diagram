@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2f0e92a85cce4d0da0693dea52b65682" Name="Diagram1">
+        <EntityTypeShape EntityType="AplicacionMVCModel.Modulo" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AplicacionMVCModel.Operacion" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AplicacionMVCModel.Rol" Width="1.5" PointX="6" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AplicacionMVCModel.RolOperacion" Width="1.5" PointX="3.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AplicacionMVCModel.Usuario" Width="1.5" PointX="6.125" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="AplicacionMVCModel.FK__Operacion__IdMod__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="AplicacionMVCModel.FK__RolOperac__IdOpe__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="AplicacionMVCModel.FK__RolOperac__IdRol__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="AplicacionMVCModel.FK__Usuario__IdRol__276EDEB3" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
